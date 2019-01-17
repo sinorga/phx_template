@@ -1,6 +1,13 @@
 # PhxTemplate
 
+It's template project for releasing phoenix project as Docker image to DigitalOcean.
+
 ## Development
+
+### Prerequirements
+
+* Docker
+* asdf
 
 To start your Phoenix server:
 
@@ -23,10 +30,11 @@ To test the image with db at local:
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+## Todo
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+- [X] Build release Docker image.
+- [ ] Production DB init and migration
+- [ ] Ansible for handling secret, ie. cookie, ...
+- [ ] CircleCI for running test
+- [ ] CircleCI for build image
+- [ ] CircleCI for deploy
