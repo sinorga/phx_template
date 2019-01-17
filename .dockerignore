@@ -1,0 +1,13 @@
+_build/
+deps/
+.git/
+.gitignore
+.elixir_ls/
+.tool-versions
+Dockerfile
+docker-compose.yml
+Makefile
+README*
+LICENSE
+test/
+priv/static/
