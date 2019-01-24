@@ -36,8 +36,8 @@ end
 environment :prod do
   set(include_erts: true)
   set(include_src: false)
-  # TODO: replace cookie later
-  set(cookie: :prod)
+  set(cookie: :"${COOKIE}")
+
   set(vm_args: "rel/vm.args")
 end
 
