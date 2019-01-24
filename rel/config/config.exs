@@ -11,7 +11,6 @@ config :phx_template, PhxTemplate.Repo,
 port = String.to_integer(System.get_env("PORT") || "8080")
 
 config :phx_template, PhxTemplateWeb.Endpoint,
-  http: [port: port],
+  http: [:inet6, port: port],
   url: [host: System.get_env("HOSTNAME"), port: port],
-  root: ".",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
