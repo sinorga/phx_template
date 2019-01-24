@@ -39,6 +39,7 @@ environment :prod do
   set(cookie: :"${COOKIE}")
 
   set(vm_args: "rel/vm.args")
+  set(pre_start_hooks: "rel/hooks/pre_start")
 end
 
 # You may define one or more releases in this file.
@@ -64,6 +65,14 @@ release :phx_template do
   set(
     overlays: [
       {:copy, "rel/config/config.exs", "etc/config.exs"}
+    ]
+  )
+
+  set(
+    commands: [
+      create_db: "rel/commands/create_db.sh",
+      migrate: "rel/commands/migrate.sh",
+      seed: "rel/commands/seed.sh"
     ]
   )
 end
