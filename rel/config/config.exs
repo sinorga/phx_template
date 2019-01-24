@@ -1,7 +1,7 @@
 # It's for runtime configuration, compare to PROJ_ROOT/config/*.exs are for compile time configuration
 use Mix.Config
 
-config :orga, PhxTemplate.Repo,
+config :phx_template, PhxTemplate.Repo,
   username: System.get_env("DATABASE_USER"),
   password: System.get_env("DATABASE_PASS"),
   database: System.get_env("DATABASE_NAME"),
@@ -10,7 +10,7 @@ config :orga, PhxTemplate.Repo,
 
 port = String.to_integer(System.get_env("PORT") || "8080")
 
-config :orga, PhxTemplateWeb.Endpoint,
+config :phx_template, PhxTemplateWeb.Endpoint,
   http: [port: port],
   url: [host: System.get_env("HOSTNAME"), port: port],
   root: ".",
