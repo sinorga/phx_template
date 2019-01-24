@@ -1,13 +1,14 @@
 # PhxTemplate
 
 It's template project for releasing phoenix project as Docker image to DigitalOcean.
+Database is using PostgreSQL now.
 
 ## Development
 
 ### Prerequirements
 
 * Docker
-* asdf
+* asdf - language version manager
 
 To start your Phoenix server:
 
@@ -24,16 +25,20 @@ To build docker image:
 
 `make release`
 
-To test the image with db at local:
+To test the image with db at local: (First time db image up may failed, the workaround is try again.)
 
 `make run`
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## Deploy
+
+Before the Ansible involved, You can deploy the docker image manually with required environment variables (refer to `config/docker.dev.env`).
+
 ## Todo
 
 - [X] Build release Docker image.
-- [ ] Production DB init and migration
+- [X] Production DB init and migration
 - [ ] Ansible for handling secret, ie. cookie, ...
 - [ ] CircleCI for running test
 - [ ] CircleCI for build image
