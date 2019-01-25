@@ -23,17 +23,15 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 To build docker image:
 
-`make release`
+`make image`
 
 To test the image with db at local: (First time db image up may failed, the workaround is try again.)
 
 `make run`
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
 ## Deploy
 
-Before the Ansible involved, You can deploy the docker image manually with required environment variables (refer to `config/docker.dev.env`).
+Before the Ansible involved, You can deploy the docker image manually with required environment variables (refer to `docker/provision.local.env`).
 
 ## Todo
 

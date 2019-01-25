@@ -5,7 +5,7 @@ deps/
 .elixir_ls/
 .tool-versions
 Dockerfile
-docker-compose.yml
+docker/
 Makefile
 README*
 LICENSE
