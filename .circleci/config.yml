@@ -81,7 +81,7 @@ jobs:
             set -x
             make run
             docker run --network container:docker_web_1 \
-              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:5000/
+              inutano/wget wget -O - -t 15 --waitretry=1 --retry-connrefused http://localhost:5000/
             make stop
 
 workflows:
