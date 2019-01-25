@@ -80,7 +80,7 @@ jobs:
           command: |
             set -x
             make run
-            docker run --network container:contacts \
+            docker run --network container:docker_web_1 \
               appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:5000/
             make stop
 
