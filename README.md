@@ -21,6 +21,10 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+## CircleCI
+
+Status Badges: Go to project setting page of CircleCI, its under NOTIFICATIONS section.
+
 ## Release
 
 To build docker image:
