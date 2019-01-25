@@ -33,13 +33,13 @@ To test the image with db at local: (First time db image up may failed, the work
 
 ## Deploy
 
-Before the Ansible involved, You can deploy the docker image manually with required environment variables (refer to `docker/provision.local.env`).
+Before the CI tools involved, You can deploy the docker image manually with required environment variables (refer to `docker/provision.local.env`).
 
 ## Todo
 
 - [X] Build release Docker image.
 - [X] Production DB init and migration
-- [ ] Ansible for handling secret, ie. cookie, ...
-- [ ] CircleCI for running test
+- [X] CircleCI for running test
 - [ ] CircleCI for build image
 - [ ] CircleCI for deploy
+- [ ] Database node setup
