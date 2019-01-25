@@ -1,5 +1,7 @@
 # PhxTemplate
 
+[![CircleCI](https://circleci.com/gh/sinorga/phx_template/tree/master.svg?style=svg)](https://circleci.com/gh/sinorga/phx_template/tree/master)
+
 It's template project for releasing phoenix project as Docker image to DigitalOcean.
 Database is using PostgreSQL now.
 
