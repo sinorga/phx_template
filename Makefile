@@ -5,18 +5,10 @@ APP_VSN ?= `grep 'version:' mix.exs | cut -d '"' -f2`
 BUILD ?= `git rev-parse --short HEAD`
 
 LOCAL_PROVISION_CONF := docker/provision.local.yml
-DOCKER := /usr/local/bin/docker
-CASK := brew cask
 
-$(DOCKER):
-	@$(CASK) install docker
-
+DOCKER := docker
 COMPOSE := $(DOCKER)-compose
-$(COMPOSE):
-	@[ -f $(COMPOSE) ] || (\
-	  echo "Please install Docker via $(BOLD)brew cask docker$(NORMAL) so that $(BOLD)docker-compose$(NORMAL) will be managed in lock-step with Docker" && \
-	  exit 1 \
-	)
+CIRCLECI := circleci
 
 help:
 	@echo "$(APP_NAME):$(APP_VSN)-$(BUILD)"
@@ -24,7 +16,7 @@ help:
 
 .PHONY: image
 image: ## Build the release Docker image
-	docker build --build-arg APP_NAME=$(APP_NAME) \
+	$(DOCKER) build --build-arg APP_NAME=$(APP_NAME) \
 		--build-arg APP_VSN=$(APP_VSN) \
 		-t $(APP_NAME):$(APP_VSN)-$(BUILD) \
 		-t $(APP_NAME):latest .
@@ -40,3 +32,6 @@ run: ## Run the app and db in Docker - Only for verify the release image, not fo
 .PHONY: stop
 stop: ## Stop the app and db in Docker - Only for verify the release image, not for development
 	$(COMPOSE) -f $(LOCAL_PROVISION_CONF) down
+
+check-ci-config: ## Verify CircleCI config format
+	$(CIRCLECI) config check
