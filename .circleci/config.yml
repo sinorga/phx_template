@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  unit_test:
     parallelism: 1
     docker:
       - image: circleci/elixir:1.7.4-node
@@ -54,3 +54,33 @@ jobs:
 
       - store_test_results:
           path: _build/test/lib/phx_template
+  build_image:
+    docker:
+      - image: circleci/elixir:1.7.4-node
+
+    working_directory: ~/phx_template
+
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build docker image
+          command: make image
+      - run:
+          name: Start container and verify it is working
+          command: |
+            set -x
+            make run
+            docker run --network container:docker_web_1 \
+              inutano/wget wget -O - -t 15 --waitretry=1 --retry-connrefused http://localhost:5000/
+            make stop
+
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - unit_test
+      - build_image:
+          requires:
+            - unit_test
