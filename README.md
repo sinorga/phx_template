@@ -44,6 +44,6 @@ Before the CI tools involved, You can deploy the docker image manually with requ
 - [X] Build release Docker image.
 - [X] Production DB init and migration
 - [X] CircleCI for running test
-- [ ] CircleCI for build image
+- [X] CircleCI for build image
 - [ ] CircleCI for deploy
 - [ ] Database node setup
