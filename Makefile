@@ -5,6 +5,7 @@ APP_VSN ?= `grep 'version:' mix.exs | cut -d '"' -f2`
 BUILD ?= `git rev-parse --short HEAD`
 
 LOCAL_PROVISION_CONF := docker/provision.local.yml
+WEB_DOCKERFILE := docker/web.release.Dockerfile
 
 DOCKER := docker
 COMPOSE := $(DOCKER)-compose
@@ -16,7 +17,7 @@ help:
 
 .PHONY: image
 image: ## Build the release Docker image
-	$(DOCKER) build --build-arg APP_NAME=$(APP_NAME) \
+	$(DOCKER) build -f $(WEB_DOCKERFILE) --build-arg APP_NAME=$(APP_NAME) \
 		--build-arg APP_VSN=$(APP_VSN) \
 		-t $(APP_NAME):$(APP_VSN)-$(BUILD) \
 		-t $(APP_NAME):latest .

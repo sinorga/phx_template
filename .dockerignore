@@ -4,7 +4,6 @@ deps/
 .gitignore
 .elixir_ls/
 .tool-versions
-Dockerfile
 docker/
 Makefile
 README*
