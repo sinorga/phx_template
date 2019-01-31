@@ -4,10 +4,11 @@ deps/
 .gitignore
 .elixir_ls/
 .tool-versions
-docker/
+deploy/
 Makefile
 README*
 LICENSE
 test/
 priv/static/
 .circleci/
+infra/

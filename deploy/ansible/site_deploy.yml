@@ -1,0 +1,5 @@
+- name: web service deploy
+  hosts: all_in_one
+  remote_user: root
+  roles:
+    - services

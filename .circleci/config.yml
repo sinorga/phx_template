@@ -66,7 +66,7 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Build docker image
-          command: make image
+          command: make image DOCKER_USER=sinorga
       - run:
           name: Start container and verify it is working
           command: |
@@ -75,6 +75,8 @@ jobs:
             docker run --network container:docker_web_1 \
               inutano/wget wget -O - -t 15 --waitretry=1 --retry-connrefused http://localhost:5000/
             make stop
+
+# TODO: Push image (need approval, and master only)
 
 workflows:
   version: 2

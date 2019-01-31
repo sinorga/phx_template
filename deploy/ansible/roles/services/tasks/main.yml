@@ -1,0 +1,21 @@
+- name: copy web env file
+  template:
+    src: web.env.j2
+    dest: "{{deploy_path}}/web.env"
+- name: copy db env file
+  template:
+    src: db.env.j2
+    dest: "{{deploy_path}}/db.env"
+- name: copy compose file
+  template:
+    src: compose.yml.j2
+    dest: "{{deploy_path}}/compose.yml"
+# FIXME: the first time pull image will fail, second time works
+# Wait for docker-compose 1.24.0 release, https://github.com/ansible/ansible/issues/47978
+- name: pull docker image and run service
+  docker_service:
+    project_src: "{{deploy_path}}"
+    files:
+      - compose.yml
+    state: present
+    pull: true

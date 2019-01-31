@@ -1,0 +1,26 @@
+{
+  "variables": {
+    "do_token": ""
+  },
+  "builders": [
+    {
+      "type": "digitalocean",
+      "name": "phx_template_base",
+      "api_token": "{{user `do_token`}}",
+      "image": "docker-18-04",
+      "region": "sgp1",
+      "size": "s-1vcpu-1gb",
+      "ssh_username": "root"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt update -y; sleep 10",
+        "sudo apt install -y python-pip",
+        "sudo pip install --user docker docker-compose"
+      ]
+    }
+  ]
+}

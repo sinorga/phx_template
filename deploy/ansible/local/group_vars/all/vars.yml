@@ -1,0 +1,20 @@
+deploy_path: local_release/phx_template
+web:
+  hostname: localhost
+  port: 5000
+  secret_key_base: "u1QXlca4XEZKb1o3HL/aUlznI1qstCNAQ6yme/lFbFIs0Iqiq/annZ+Ty8JyUCDc"
+  erlang:
+    cookie: prod_cookie
+  service:
+    port: 5000
+    restart_mode: "no"
+    image: "{{docker_user}}/{{app_name}}:latest"
+
+db:
+  host: db
+  user: postgres
+  password: postgres
+  db_name: phx_template_prod
+  service:
+    restart_mode: "no"
+    volume: pgdata
