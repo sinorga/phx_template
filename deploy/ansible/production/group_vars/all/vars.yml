@@ -1,0 +1,20 @@
+deploy_path: /root/phx_template
+web:
+  hostname: localhost
+  port: 5000
+  secret_key_base: "{{secret_key_base}}"
+  erlang:
+    cookie: "{{cookie}}"
+  service:
+    port: 80
+    restart_mode: "always"
+    image: "{{docker_user}}/{{app_name}}:latest"
+
+db:
+  host: db
+  user: postgres
+  password: "{{db_password}}"
+  db_name: phx_template_prod
+  service:
+    restart_mode: "always"
+    volume: pgdata

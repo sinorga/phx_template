@@ -75,12 +75,19 @@ jobs:
             docker run --network container:docker_web_1 \
               inutano/wget wget -O - -t 15 --waitretry=1 --retry-connrefused http://localhost:5000/
             make stop
-
+      - run:
+          name: Push image
+          command: |
+            docker login -u $DOCKER_USER -p $$DOCKER_PASS
+            make push-image
 workflows:
   version: 2
   test_and_build:
     jobs:
       - unit_test
       - build_image:
+          filters:
+            branches:
+              only: master
           requires:
             - unit_test

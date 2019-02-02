@@ -1,0 +1,4 @@
+- name: Create app install directory
+  file:
+    path: "{{deploy_path}}"
+    state: directory

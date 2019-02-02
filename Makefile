@@ -4,8 +4,8 @@ APP_NAME ?= `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e
 APP_VSN ?= `grep 'version:' mix.exs | cut -d '"' -f2`
 BUILD ?= `git rev-parse --short HEAD`
 
-LOCAL_PROVISION_CONF := docker/provision.local.yml
-WEB_DOCKERFILE := docker/web.release.Dockerfile
+LOCAL_PROVISION_CONF := deploy/provision.local.yml
+WEB_DOCKERFILE := deploy/web.release.Dockerfile
 
 DOCKER := docker
 COMPOSE := $(DOCKER)-compose
@@ -17,10 +17,18 @@ help:
 
 .PHONY: image
 image: ## Build the release Docker image
+	@test -n "$(DOCKER_USER)" || { echo "please set DOCKER_USER variable"; exit 1; }
 	$(DOCKER) build -f $(WEB_DOCKERFILE) --build-arg APP_NAME=$(APP_NAME) \
 		--build-arg APP_VSN=$(APP_VSN) \
-		-t $(APP_NAME):$(APP_VSN)-$(BUILD) \
-		-t $(APP_NAME):latest .
+		-t $(DOCKER_USER)/$(APP_NAME):$(APP_VSN)-$(BUILD) \
+		-t $(APP_NAME):latest \
+		-t $(DOCKER_USER)/$(APP_NAME):latest .
+
+.PHONY: ## Push image to docker hub
+push-image:
+	@test -n "$(DOCKER_USER)" || { echo "please set DOCKER_USER variable"; exit 1; }
+	$(DOCKER) push $(DOCKER_USER)/$(APP_NAME):$(APP_VSN)-$(BUILD)
+	$(DOCKER) push $(DOCKER_USER)/$(APP_NAME):latest
 
 .PHONY: attach-web-console
 attach-web-console: ## Attach running container of web

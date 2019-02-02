@@ -40,3 +40,14 @@ npm-debug.log
 # secrets files as long as you replace their contents by environment
 # variables.
 /config/*.secret.exs
+
+# Terrform generated and secret files
+**/secret.vars.json
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+
+# deploy
+**/local_release/
+*.retry
+**/.vault_pass
