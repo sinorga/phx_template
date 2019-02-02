@@ -18,13 +18,15 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-## CI/CD flow
-
-TBD
-
 ## CircleCI
 
-Status Badges: Go to project setting page of CircleCI, its under NOTIFICATIONS section.
+Status Badges:
+  Go to project setting page of CircleCI, its under NOTIFICATIONS section.
+
+Environment variables:
+
+* DOCKER_USER: for image build
+* DOCKER_PASS: for image push
 
 ## Release
 
@@ -135,5 +137,7 @@ If the deploy successfully, you can see the phoenix page by visit the http://[NO
 - [X] Production DB init and migration
 - [X] CircleCI for running test
 - [X] CircleCI for build image
+- [X] Manually infra setup and deploy.
 - [ ] CircleCI for deploy
 - [ ] Database node setup
+- [ ] Project generator based on Mix task.
