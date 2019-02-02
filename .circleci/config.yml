@@ -80,17 +80,14 @@ jobs:
           command: |
             docker login -u $DOCKER_USER -p $$DOCKER_PASS
             make push-image
-
-# TODO: Push image (need approval, and master only)
-
 workflows:
   version: 2
   test_and_build:
     jobs:
       - unit_test
       - build_image:
-        filters:
-          branches:
-            only: master
-        requires:
-          - unit_test
+          filters:
+            branches:
+              only: master
+          requires:
+            - unit_test
