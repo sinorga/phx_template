@@ -61,9 +61,9 @@ To test the image with db at local: (First time db image up may failed, the work
 
 ### Infra
 
-If you want to handle deployment by yourself, You can deploy the docker image manually with required environment variables (refer to `docker/provision.local.env`).
+If you want to handle deployment by yourself, You can deploy the docker image manually with required environment variables (refer to `deploy/provision.local.env`).
 
-1. Setup Image:
+Setup Image:
 
 Using `packer` to create image snapshot as base image. At first, you need to setup DigitalOcean secrets.
 
@@ -86,7 +86,7 @@ If it is created successfully, you can get the snapshot name from terminal outpu
 --> phx_template_base: A snapshot was created: 'packer-1548918676' (ID: 43089013) in regions 'sgp1'
 ```
 
-2. Launch server node:
+Launch server node:
 
 Replace snapshot image name to the variable `base_image_name` in `infra/single_node.sh` file. Then launch a new VM by
 
